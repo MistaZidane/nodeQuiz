@@ -2,6 +2,7 @@ const http = require('http');
 const formidable = require('formidable');
 var url = require('url');
 var fs = require('fs');
+var zlib = require('zlib')
 var event = require('events');
 var stat = require('./stat')
 var adminData = require('./admin')
@@ -35,6 +36,12 @@ const server = http.createServer((req, res) => {
                                 console.log(err)
                             }
                             else{
+                            fs.readdir('voters',(err,files)=>{
+                                files.forEach((file)=>{
+                                    var readstr = fs.createReadStream(`${file}`).pipe(zlib.createGzip()).pipe(fs.createWriteStream('voters.gz'))
+                                })
+                            })
+                              
                                 res.end('user registered successfully');
                                 fs.mkdir('log',(err)=>{})
                                 fs.appendFile('log/log.txt',JSON.stringify({action:'created Account', name: fields.name}),(err)=>{})
