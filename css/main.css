@@ -1,0 +1,12 @@
+.footer{
+    background-color: rgba(223, 223, 57, 0.925);
+}
+.home{
+    background-color: rgba(223, 223, 57, 0.925);
+}
+html {
+    scroll-behavior: smooth;
+  }
+  #contact{
+      background-color: rgba(223, 223, 57, 0.486);
+  }
